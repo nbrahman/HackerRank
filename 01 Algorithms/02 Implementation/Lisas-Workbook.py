@@ -1,16 +1,16 @@
 #!/bin/python3
 
-from math import ceil
+from math import floor
 
 def countSpecialProblems(n , k, t):
-    cnt, offset = 0, 1
+    cnt, page = 0, 1
     for chapter in t:
-        pages = ceil((chapter + k - 1) / k)
-        #print(pages)
-        for i in range(pages):
-            if offset >= (i * k) and offset <= min((i + 1) * k, chapter):
+        for p in range(1, chapter + 1):
+            if p == page:
                 cnt += 1
-            offset += 1
+            if p != chapter and p % k == 0:
+                page += 1
+        page += 1
     return cnt
 
 
